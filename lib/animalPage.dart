@@ -1,0 +1,56 @@
+import 'package:flutter/material.dart';
+import 'model.dart';
+import 'package:like_button/like_button.dart';
+
+class AnimalPage extends StatefulWidget {
+  const AnimalPage({super.key, required this.animal});
+
+  final Animal animal;
+
+  @override
+  State<AnimalPage> createState() => _AnimalPageState();
+}
+
+class _AnimalPageState extends State<AnimalPage> {
+  bool isLiked = false;
+  int likeCount = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.animal.name),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: 200,
+              width: 200,
+              child: Image.asset(widget.animal.imgPath),
+            ),
+            const SizedBox(
+              height: 40,
+            ),
+            SizedBox(
+              height: 50,
+              child: Text(
+                widget.animal.location,
+                style: const TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            LikeButton(
+              size: 50,
+              isLiked: isLiked,
+              likeCount: likeCount,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
